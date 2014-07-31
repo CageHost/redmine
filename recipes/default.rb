@@ -34,8 +34,8 @@ for p in packages do
 end
 
 # The rest may automatically install with Bundler
-
-execute "gem install" do
-  command "gem install bundler nokogiri mysql2"
-  action :run
-end
+#
+# execute "gem install" do
+#   command "gem install bundler nokogiri mysql2"
+#   action :run
+# end
