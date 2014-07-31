@@ -7,3 +7,4 @@ long_description 'Installs/Configures redmine'
 version          '0.1.0'
 
 depends 'lamp'
+depends 'postgresql'

@@ -7,33 +7,35 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "lamp"
+recipes = [
+	"lamp",
+	"postgresql::server"
+]
 
-package "ruby-openid" do
-  action :install
+for r in recipes do
+  include_recipe r
 end
 
-package "imagemagick" do
-  action :install
+packages = [
+	"ruby1.9.1-dev",
+	"ruby-openid",
+	"imagemagick",
+	"libmagickcore-dev",
+	"libmagickwand-dev",
+	"libapache2-mod-passenger",
+	"libmysqlclient-dev",
+	"ruby-passenger"
+]
+
+for p in packages do
+  package p do
+    action [:install]
+  end
 end
 
-package "libmagickcore-dev" do
-  action :install
-end
+# The rest may automatically install with Bundler
 
-package "libmagickwand-dev" do
-  action :install
-end
-
-package "libapache2-mod-passenger" do
-  action :install
-end
-
-package "ruby-passenger" do
-  action :install
-end
-
-execute "gem install bundler" do
-  command "gem install bundler"
+execute "gem install" do
+  command "gem install bundler nokogiri mysql2"
   action :run
 end
